@@ -15,21 +15,44 @@ export const DEFAULT_USER: UserSession = {
   locality: 'Koramangala, Bengaluru',
 };
 
+
 export const getStoredProviders = (): Provider[] => {
   try {
     const raw = localStorage.getItem(STORAGE_KEYS.PROVIDERS);
+
     if (!raw) {
-      // First time initialize with seeds
-      localStorage.setItem(STORAGE_KEYS.PROVIDERS, JSON.stringify(SEED_PROVIDERS));
+      localStorage.setItem(
+        STORAGE_KEYS.PROVIDERS,
+        JSON.stringify(SEED_PROVIDERS)
+      );
       return SEED_PROVIDERS;
     }
+
     const parsed: Provider[] = JSON.parse(raw);
-    return parsed.length > 0 ? parsed : SEED_PROVIDERS;
+
+    // Always use the latest six seed demo providers.
+    // Keep custom providers registered through the website.
+    const customProviders = parsed.filter(
+      (provider) => !/^prov-\d+$/.test(provider.id)
+    );
+
+    const updatedProviders = [
+      ...SEED_PROVIDERS,
+      ...customProviders,
+    ];
+
+    localStorage.setItem(
+      STORAGE_KEYS.PROVIDERS,
+      JSON.stringify(updatedProviders)
+    );
+
+    return updatedProviders;
   } catch (error) {
     console.error('Error reading providers from localStorage:', error);
     return SEED_PROVIDERS;
   }
 };
+
 
 export const saveNewProvider = (newProvider: Omit<Provider, 'id' | 'isDemo' | 'rating' | 'reviewCount'>): Provider => {
   const current = getStoredProviders();

@@ -67,18 +67,20 @@ export const CATEGORIES: CategoryItem[] = [
   },
 ];
 
-export const POPULAR_LOCALITIES: string[] = [
+export const POPULAR_LOCALITIES = [
   'All Localities',
-  'Koramangala, Bengaluru',
-  'Indiranagar, Bengaluru',
-  'HSR Layout, Bengaluru',
-  'Whitefield, Bengaluru',
-  'Bandra West, Mumbai',
-  'Andheri East, Mumbai',
-  'Powai, Mumbai',
-  'Lajpat Nagar, New Delhi',
-  'Connaught Place, New Delhi',
-  'Vasant Kunj, New Delhi',
-  'Gachibowli, Hyderabad',
-  'Sector 18, Noida',
+  'CIDCO',
+  'Garkheda',
+  'Osmanpura',
+  'Waluj',
+  'Nirala Bazar',
+  'N-1 CIDCO',
+  'N-2 CIDCO',
+  'N-3 CIDCO',
+  'Seven Hills',
+  'Samarth Nagar',
+  'Jalna Road',
+  'Satara Parisar',
+  'Beed Bypass',
+  'Aurangabad Railway Station Area',
 ];

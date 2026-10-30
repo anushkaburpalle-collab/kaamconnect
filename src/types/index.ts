@@ -80,9 +80,12 @@ export interface FilterState {
   sortBy: 'recommended' | 'rating-desc' | 'price-asc' | 'price-desc' | 'experience-desc';
 }
 
+
 export interface UserSession {
   isLoggedIn: boolean;
   name: string;
   phone: string;
   locality: string;
+  role?: 'customer' | 'provider';
 }
+
